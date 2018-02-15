@@ -1,0 +1,10 @@
+<app-search-bar class="row" (searchChanged)="searchMovie($event)"></app-search-bar>
+<i class="fa fa-trash" *ngIf="privateMovies.length > 0" (click)="allowRemoveMovies()"></i>
+<app-budget></app-budget>
+<h4 *ngIf="privateMovies.length == 0">{{title}}</h4>
+<h4 class="budget-state">{{budgetState}}</h4>
+<h4> My Movies: </h4>
+<ul class="row">
+  <app-movie class="col-4" *ngFor="let movie of privateMovies | filter : currentSearchTerm; let i = index" [movie]=movie [deleteMoviesFromPrivate]="deleteMoviesFromPrivate" (clickToRemoveMovie)="removeMovieFromPrivate($event)"></app-movie>
+</ul>
+

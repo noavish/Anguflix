@@ -1,0 +1,6 @@
+<app-search-bar class="row" (searchChanged)="searchMovie($event)"></app-search-bar>
+<h4> All Movies: </h4>
+<ul class="row">
+  <app-movie class="col-4" (clickedMovie)="addMovieToPrivate($event) "*ngFor="let movie of movies | filter : currentSearchTerm; let i = index" [movie]=movie></app-movie>
+</ul>
+

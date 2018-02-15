@@ -1,0 +1,15 @@
+<li data-id="{{movie.id}}" (click)="movieWasClicked(movie)">
+  <div class="movie-data">
+    <div class="img">
+      <img src="{{movie.img}}">
+    </div>
+    <div class="movie-title">
+      <h4>{{movie.title}}</h4>
+      <p> - {{movie.year}}</p>
+    </div>
+    <div class="desc">
+      {{movie.descrShort}}
+    </div>
+    <i class="fa fa-trash" *ngIf="deleteMoviesFromPrivate == true" (click)="removeMovieFromPrivate(movie)"></i>
+  </div>
+</li>
