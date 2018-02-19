@@ -18,15 +18,13 @@ export class PrivateMoviesComponent implements OnInit {
   status: string;
 
 
-  constructor( private moviesService: MoviesService, private usersService: UsersService ) {
+  constructor( private moviesService: MoviesService, private usersService: UsersService ) {}
 
+  ngOnInit() {
     this.usersService.addMovieFromAllToPrivate.subscribe(data => {
       this.getStatus(data);
       console.log(data);
     });
-  }
-
-  ngOnInit() {
     this.user = this.usersService.getUser();
     this.privateMovies = this.usersService.getPrivateMovies();
     console.log(this.privateMovies);
