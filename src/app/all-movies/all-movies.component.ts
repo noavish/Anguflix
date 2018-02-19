@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../movies.service';
 import { Movie } from '../movieModel';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-all-movies',
@@ -11,7 +12,7 @@ export class AllMoviesComponent implements OnInit {
   movies: any[];
   currentSearchTerm: string;
 
-  constructor( private moviesService: MoviesService ) { }
+  constructor( private moviesService: MoviesService, private usersService: UsersService ) { }
 
   ngOnInit() {
     this.movies = this.moviesService.getAllMovies();
@@ -24,6 +25,7 @@ export class AllMoviesComponent implements OnInit {
   }
 
   addMovieToPrivate(movie: Movie) {
-    this.moviesService.addMovieToPrivateMovies(movie);
+    this.usersService.addMovieToPrivateMovies(movie);
+    this.usersService.addMovieFromAllToPrivate.emit(movie);
   }
 }

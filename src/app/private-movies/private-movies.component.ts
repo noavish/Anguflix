@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MoviesService} from '../movies.service';
 import {Movie} from '../movieModel';
+import {UsersService} from '../users.service';
+import {User} from '../userModel';
 
 @Component({
   selector: 'app-private-movies',
@@ -8,17 +10,26 @@ import {Movie} from '../movieModel';
   styleUrls: ['./private-movies.component.css']
 })
 export class PrivateMoviesComponent implements OnInit {
+  user: User;
   title: string = 'Select movies from below to add to your collection';
   privateMovies: any[];
   currentSearchTerm: string;
   deleteMoviesFromPrivate: boolean;
+  status: string;
 
 
-  constructor( private moviesService: MoviesService ) { }
+  constructor( private moviesService: MoviesService, private usersService: UsersService ) {
+
+    this.usersService.addMovieFromAllToPrivate.subscribe(data => {
+      this.getStatus(data);
+      console.log(data);
+    });
+  }
 
   ngOnInit() {
-    this.privateMovies = this.moviesService.getPrivateMovies();
-    console.log(this.privateMovies)
+    this.user = this.usersService.getUser();
+    this.privateMovies = this.usersService.getPrivateMovies();
+    console.log(this.privateMovies);
   }
 
   searchMovie(searchTerm: string) {
@@ -26,15 +37,28 @@ export class PrivateMoviesComponent implements OnInit {
     this.currentSearchTerm = searchTerm;
   }
 
-  get budgetState() {
-    return this.moviesService.getBudgetState();
-  }
-
   allowRemoveMovies() {
     this.deleteMoviesFromPrivate = !this.deleteMoviesFromPrivate;
   }
 
   removeMovieFromPrivate(movie: Movie) {
-    this.moviesService.removeMovieFromPrivateMovieArray(movie);
+    this.usersService.removeMovieFromPrivateMovieArray(movie);
+  }
+
+  getStatus(movie: Movie)  {
+    const status = this.usersService.getBudgetState();
+    switch (status) {
+      case 0:
+        this.status = '';
+        break;
+      case 1:
+        this.status = `You don't have enough money, you only have $${this.user.budget} left`;
+        break;
+      case 2:
+        this.status = `${movie.title} is already in your collection`;
+        break;
+      case 3:
+        this.status = `You can't purchase ${movie.title}, your budget is empty`;
+    }
   }
 }

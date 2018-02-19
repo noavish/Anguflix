@@ -8,8 +8,9 @@ import { PrivateMoviesComponent } from './private-movies/private-movies.componen
 import { MovieComponent } from './movie/movie.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { BudgetComponent } from './budget/budget.component';
-import {MoviesService} from './movies.service';
-import {FormsModule} from '@angular/forms';
+import { MoviesService } from './movies.service';
+import { UsersService } from './users.service';
+import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 
 
@@ -27,7 +28,7 @@ import { FilterPipe } from './filter.pipe';
     BrowserModule,
     FormsModule
   ],
-  providers: [MoviesService],
+  providers: [MoviesService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

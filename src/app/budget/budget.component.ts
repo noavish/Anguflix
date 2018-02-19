@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../movies.service';
+import {UsersService} from '../users.service';
+import {User} from '../userModel';
 
 
 @Component({
@@ -8,15 +10,11 @@ import { MoviesService } from '../movies.service';
   styleUrls: ['./budget.component.css']
 })
 export class BudgetComponent implements OnInit {
-
-  constructor( private moviesService: MoviesService ) { }
+  user: User;
+  constructor( private moviesService: MoviesService, private usersService: UsersService ) { }
 
   ngOnInit() {
-
-  }
-
-  get budget() {
-    return this.moviesService.getBudget();
+    this.user = this.usersService.getUser();
   }
 
 }
