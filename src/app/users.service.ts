@@ -2,7 +2,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import { User } from './userModel';
 import { Movie } from './movieModel';
 
-const USER: User = {id: 1, name: 'Noa', budget: 30, privateMovies: []};
+const USER: User = {id: 1, name: 'Noa', budget: 100, privateMovies: []};
 
 
 @Injectable()
@@ -12,7 +12,8 @@ export class UsersService {
   privateMovies: Movie[] = USER.privateMovies;
   addMovieFromAllToPrivate = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   getUser(): User {
     return this.user;

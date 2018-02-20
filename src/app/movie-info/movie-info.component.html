@@ -11,7 +11,19 @@
       <h1>{{movie.title}}</h1>
       <p>By: {{movie.director}} | {{movie.year}}</p>
       <p>{{movie.fullDescription}}</p>
-      <h6>Reviews:</h6>
+      <h6>Reviews:<span><i class="fa fa-plus-circle" (click)="reviewsAddClicked()"></i></span></h6>
+      <div class="justify-content-sm-center">
+        <form>
+          <div class="input-group" *ngIf="showReviewForm">
+            <input type="text" class="form-control" placeholder="Name" name="title-review-name" [(ngModel)]="reviewName" />
+            <input type="number" class="form-control" placeholder="Rating" name="title-review-rating" [(ngModel)]="reviewRating" />
+            <input type="text" class="form-control" placeholder="Review" name="title-review-text" [(ngModel)]="reviewText" />
+            <div class="input-group-btn submit-btn-div">
+              <button type="button" class="btn btn-dark btn-default" (click)="addReview()">Post review</button>
+            </div>
+          </div>
+        </form>
+      </div>
       <ul>
         <li *ngFor="let review of movie.reviews; let i = index" data-id="{{review._id}}">
           <p> {{review.name}}  <span>({{review.rating}} stars)</span>: {{review.text}}</p>

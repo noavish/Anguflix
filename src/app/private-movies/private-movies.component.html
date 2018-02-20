@@ -1,19 +1,27 @@
-<div class="col-4">
-  <app-search-bar class="private-search row" (searchChanged)="searchMovie($event)"></app-search-bar>
-</div>
-<div class="col-4">
-  <i class="fa fa-trash" *ngIf="privateMovies.length > 0" (click)="allowRemoveMovies()"></i>
-</div>
-<div class="col-4 budget">
-  <app-budget></app-budget>
-</div>
-<div class="text row">
-  <div class="title col-12">
-    <h4 *ngIf="privateMovies.length == 0">{{title}}</h4>
-    <h4 class="budget-state">{{status}}</h4>
+<div class="col-12" dnd-droppable (onDropSuccess)="transferDataSuccess($event)">
+  <div class="headline row">
+    <h4> My Movies: </h4>
   </div>
+  <div class="row">
+    <div class="col-4">
+      <app-search-bar class="private-search row" (searchChanged)="searchMovie($event)"></app-search-bar>
+    </div>
+    <div class="col-4">
+      <i class="fa fa-trash" *ngIf="privateMovies.length > 0" (click)="allowRemoveMovies()"></i>
+    </div>
+    <div class="col-4 budget">
+      <app-budget></app-budget>
+    </div>
+    <div class="text row">
+      <div class="title col-12">
+        <h4 *ngIf="privateMovies.length == 0">{{title}}</h4>
+        <h4 class="budget-state">{{status}}</h4>
+      </div>
+    </div>
+    <ul class="row drag">
+      <app-movie class="col-4" *ngFor="let movie of privateMovies | filter : currentSearchTerm; let i = index" [movie]=movie [deleteMoviesFromPrivate]="deleteMoviesFromPrivate" (clickToRemoveMovie)="removeMovieFromPrivate($event)"></app-movie>
+    </ul>
 </div>
-<ul class="row">
-  <app-movie class="col-4" *ngFor="let movie of privateMovies | filter : currentSearchTerm; let i = index" [movie]=movie [deleteMoviesFromPrivate]="deleteMoviesFromPrivate" (clickToRemoveMovie)="removeMovieFromPrivate($event)"></app-movie>
-</ul>
+
+
 

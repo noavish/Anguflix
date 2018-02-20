@@ -3,6 +3,7 @@ import {MoviesService} from '../movies.service';
 import {Movie} from '../movieModel';
 import {UsersService} from '../users.service';
 import {User} from '../userModel';
+import {DragDropData} from 'ng2-dnd';
 
 @Component({
   selector: 'app-private-movies',
@@ -57,5 +58,10 @@ export class PrivateMoviesComponent implements OnInit {
       case 3:
         this.status = `You can't purchase ${movie.title}, your budget is empty`;
     }
+  }
+
+  transferDataSuccess(data) {
+    console.log(data.dragData);
+    this.usersService.addMovieToPrivateMovies(data.dragData);
   }
 }

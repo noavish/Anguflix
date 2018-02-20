@@ -15,3 +15,7 @@ button {
 .img {
   text-align: right;
 }
+
+h6 span {
+  float: right;
+}

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import {DndModule} from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
 import { AllMoviesComponent } from './all-movies/all-movies.component';
@@ -33,7 +34,9 @@ import { MovieInfoComponent } from './movie-info/movie-info.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    DndModule,
+    DndModule.forRoot()
   ],
   providers: [MoviesService, UsersService],
   bootstrap: [AppComponent]

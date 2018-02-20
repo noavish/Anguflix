@@ -1,4 +1,4 @@
-<li class="movie-item" data-id="{{movie._id}}" (click)="movieWasClicked(movie)">
+<li class="movie-item" data-id="{{movie._id}}" (click)="movieWasClicked(movie)" dnd-draggable [dragEnabled]="true" [dragData]="movie">
   <div class="movie-data row">
     <div class="img col-5">
       <img src="{{movie.imgUrl}}">

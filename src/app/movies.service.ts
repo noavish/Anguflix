@@ -27,4 +27,8 @@ export class MoviesService {
     return this.http.get<Object>(`https://anguflix-api.herokuapp.com/api/movies/${id}`);
   }
 
+  addReview(id: string, review: object) {
+    return this.http.post<Object>(`https://anguflix-api.herokuapp.com/api/movies/${id}/reviews`, review);
+  }
+
 }

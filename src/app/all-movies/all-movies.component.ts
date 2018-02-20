@@ -11,13 +11,14 @@ import { UsersService } from '../users.service';
 export class AllMoviesComponent implements OnInit {
   movies: any;
   currentSearchTerm: string;
+  isLoading: boolean = true;
 
   constructor( private moviesService: MoviesService, private usersService: UsersService ) { }
 
   ngOnInit() {
     // this.movies = this.moviesService.getAllMovies();
     this.moviesService.getAllMovies().subscribe(
-      movies => this.movies = movies,
+      movies => {this.movies = movies; this.isLoading = false; },
       error => {
         console.error(error);
       });
