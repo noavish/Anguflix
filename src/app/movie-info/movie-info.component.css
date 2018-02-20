@@ -1,0 +1,17 @@
+.movie {
+  background-color: black;
+  color: antiquewhite;
+  padding-top: 50px;
+}
+
+.buy {
+   float: right;
+ }
+
+button {
+  color: antiquewhite;
+}
+
+.img {
+  text-align: right;
+}

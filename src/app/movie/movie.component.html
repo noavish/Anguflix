@@ -1,15 +1,18 @@
-<li data-id="{{movie.id}}" (click)="movieWasClicked(movie)">
-  <div class="movie-data">
-    <div class="img">
-      <img src="{{movie.img}}">
+<li class="movie-item" data-id="{{movie._id}}" (click)="movieWasClicked(movie)">
+  <div class="movie-data row">
+    <div class="img col-5">
+      <img src="{{movie.imgUrl}}">
     </div>
-    <div class="movie-title">
-      <h4>{{movie.title}}</h4>
-      <p> - {{movie.year}}</p>
+    <div class="movie-title col-7">
+      <div>
+        <h5>{{movie.title}}</h5>
+        <p> - {{movie.year}}</p>
+        <p> {{movie.shortDescription}} </p>
+      </div>
+      <div class="buttons">
+        <a routerLink='movie/{{movie._id}}'><i class="fa fa-expand"></i></a>
+        <i class="fa fa-trash" *ngIf="deleteMoviesFromPrivate == true" (click)="removeMovieFromPrivate(movie)"></i>
+      </div>
     </div>
-    <div class="desc">
-      {{movie.descrShort}}
-    </div>
-    <i class="fa fa-trash" *ngIf="deleteMoviesFromPrivate == true" (click)="removeMovieFromPrivate(movie)"></i>
   </div>
 </li>

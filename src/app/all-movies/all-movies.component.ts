@@ -9,13 +9,18 @@ import { UsersService } from '../users.service';
   styleUrls: ['./all-movies.component.css']
 })
 export class AllMoviesComponent implements OnInit {
-  movies: any[];
+  movies: any;
   currentSearchTerm: string;
 
   constructor( private moviesService: MoviesService, private usersService: UsersService ) { }
 
   ngOnInit() {
-    this.movies = this.moviesService.getAllMovies();
+    // this.movies = this.moviesService.getAllMovies();
+    this.moviesService.getAllMovies().subscribe(
+      movies => this.movies = movies,
+      error => {
+        console.error(error);
+      });
   }
 
 
@@ -25,7 +30,6 @@ export class AllMoviesComponent implements OnInit {
   }
 
   addMovieToPrivate(movie: Movie) {
-    this.usersService.addMovieToPrivateMovies(movie);
     this.usersService.addMovieFromAllToPrivate.emit(movie);
   }
 }

@@ -22,12 +22,11 @@ export class PrivateMoviesComponent implements OnInit {
 
   ngOnInit() {
     this.usersService.addMovieFromAllToPrivate.subscribe(data => {
+      this.usersService.addMovieToPrivateMovies(data);
       this.getStatus(data);
-      console.log(data);
     });
     this.user = this.usersService.getUser();
     this.privateMovies = this.usersService.getPrivateMovies();
-    console.log(this.privateMovies);
   }
 
   searchMovie(searchTerm: string) {

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Movie } from '../movieModel';
+import { MoviesService } from '../movies.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class MovieComponent implements OnInit {
   @Output() clickToRemoveMovie: EventEmitter<Movie> = new EventEmitter();
 
 
-  constructor( ) {}
+
+  constructor( private moviesService: MoviesService ) {}
 
   ngOnInit() {
   }

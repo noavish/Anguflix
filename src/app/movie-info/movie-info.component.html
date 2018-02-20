@@ -1,0 +1,23 @@
+<div class="movie container-fluid" *ngIf="movie" data-id="{{movie._id}}">
+  <div class="row">
+    <div class="col-5 img">
+      <img src="{{movie.imgUrl}}">
+    </div>
+    <div class="col-5">
+      <div class="buy">
+        <span> Price: ${{movie.price}}</span>
+        <button type="button" class="btn btn-dark btn-sm" (click)="buyMovie(movie)">Buy</button>
+      </div>
+      <h1>{{movie.title}}</h1>
+      <p>By: {{movie.director}} | {{movie.year}}</p>
+      <p>{{movie.fullDescription}}</p>
+      <h6>Reviews:</h6>
+      <ul>
+        <li *ngFor="let review of movie.reviews; let i = index" data-id="{{review._id}}">
+          <p> {{review.name}}  <span>({{review.rating}} stars)</span>: {{review.text}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

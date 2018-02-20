@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AllMoviesComponent } from './all-movies/all-movies.component';
@@ -12,6 +12,9 @@ import { MoviesService } from './movies.service';
 import { UsersService } from './users.service';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
+import { AppRoutingModule } from './/app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { MovieInfoComponent } from './movie-info/movie-info.component';
 
 
 @NgModule({
@@ -22,11 +25,15 @@ import { FilterPipe } from './filter.pipe';
     MovieComponent,
     SearchBarComponent,
     BudgetComponent,
-    FilterPipe
+    FilterPipe,
+    HomeComponent,
+    MovieInfoComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [MoviesService, UsersService],
   bootstrap: [AppComponent]

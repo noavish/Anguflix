@@ -2,7 +2,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import { User } from './userModel';
 import { Movie } from './movieModel';
 
-const USER: User = {id: 1, name: 'Noa', budget: 10, privateMovies: []};
+const USER: User = {id: 1, name: 'Noa', budget: 30, privateMovies: []};
 
 
 @Injectable()
@@ -45,12 +45,8 @@ export class UsersService {
   }
 
   removeMovieFromPrivateMovieArray(movieToDelete: Movie) {
-    const movieIndex = this.privateMovies.findIndex(m => m.id == movieToDelete.id);
+    const movieIndex = this.privateMovies.findIndex(m => m._id == movieToDelete._id);
     this.privateMovies.splice(movieIndex, 1);
-    // this.privateMovies = this.privateMovies.filter((movie) => {
-    //   return movie.id !== movieToDelete.id;
-    // });
-    // return this.privateMovies;
   }
 
   isMovieNewToArray(title: string) {
@@ -64,7 +60,5 @@ export class UsersService {
 
   addMovieToPrivateArray(movie: Movie) {
     this.privateMovies.push(movie);
-    console.log(this.privateMovies);
   }
-
 }
